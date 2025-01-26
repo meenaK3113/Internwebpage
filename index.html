@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelector('.slides');
+            const prevButton = document.querySelector('.control.prev');
+            const nextButton = document.querySelector('.control.next');
+            const images = document.querySelectorAll('.slides img');
+
+            let currentIndex = 0;
+            const totalSlides = images.length;
+
+            function updateSlide() {
+                const translateX = -currentIndex * 100;
+                slides.style.transform = `translateX(${translateX}%)`;
+            }
+
+            function showNextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlide();
+            }
+
+            function showPrevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlide();
+            }
+
+            nextButton.addEventListener('click', showNextSlide);
+            prevButton.addEventListener('click', showPrevSlide);
+
+            setInterval(showNextSlide, 3000);
+        });
+    </script>
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #f4f4f4;
+        }
+    
+        .header img {
+            width: 100px; 
+        }
+    
+        .header .title {
+            flex: 1; 
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+    
+    
+        .search-bar input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+        }
+    
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #2d3640;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+    
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+        .topbar {
+            background-color: #333; 
+            padding: 10px 20px;
+            border-radius: 15px;
+        }
+
+        .topbar nav ul {
+            list-style-type: none; 
+            /* display: flex; */
+            margin: 0;
+            padding: 0; 
+            justify-content: center; 
+        }
+        .topbar nav ul li {
+            margin: 0 10px; 
+            color: white; 
+            font-size: 18px;
+            cursor: pointer; 
+        }
+
+        .topbar nav ul li:hover {
+            text-decoration: underline; 
+        }
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .control {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 2rem;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            pointer-events: all;
+            border-radius: 50%;
+        }
+
+        .control:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .slides img {
+            /* width: 100vw; */
+            height: 500px;
+            object-fit: cover;
+        }
+        .slider{
+            width: 100%;
+        }
+        .container1{
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto">
+    <div class="header">
+    <img src="images.jpg" alt="Logo">
+    <div class="title">
+        COOLERS
+    </div>
+    <div class="search-bar flex">
+        <input type="text" placeholder="Search..">
+        <button type="submit">Search</button>
+    </div>
+    </div>
+
+    <div class="topbar bg-gray-800">
+        <nav>
+            <ul class="flex justify-center">
+                <li>Home</li>
+                <li>Eye Glasses</li>
+                <li>Contact Lens</li>
+                <li>SunGlasses</li>
+                <li>Screen Glasses</li>
+            </ul>
+        </nav>
+    </div>
+    <div class="slider relative w-full max-w-3xl mx-auto overflow-hidden rounded-lg shadow-lg">
+       
+        
+        <div class="slides flex transition-transform duration-500 ease-in-out">
+            <img src="img1.jpg" alt="Image 1" class="w-full flex-shrink-0">
+            <img src="img2.jpg" alt="Image 2" class="w-full flex-shrink-0">
+            <img src="img3.jpg" alt="Image 3" class="w-full flex-shrink-0">
+            <img src="img4.jpg" alt="Image 4" class="w-full flex-shrink-0">
+        </div>
+        <div class="controls">
+            <button 
+            class="control prev absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white text-2xl px-4 py-2 rounded-full hover:bg-gray-700 focus:outline-none">
+            &lt;</button>
+        <button 
+            class="control next absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white text-2xl px-4 py-2 rounded-full hover:bg-gray-700 focus:outline-none">
+            &gt; </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container1 mx-auto bg-gray-800 text-white">
+            <p class="p-2"><div class="text-lg p-3" >The Best Eyewear From Lenskart</div>
+                <div><p class="p-3">
+                Lenskart Is The Leading E-Commerce Portal For Eyewear In India. 
+                It Has Revolutionised The Eyewear Industry In The Country With Its Omni-Channel Approach. From An Ever-Growing Number Of Offline Stores Across Major Cities In The Country To Innovative Integration Of Technology While Purchasing Online, Lenskart Caters To Every Customer With Several Deals And Offers.
+            </p></div>
+                <div><p class="p-3">A One-Stop Online Solution For Purchasing Eyewear And Its Accessories, Lenskart Delivers Them Right At Your Doorstep With Convenient Methods Of Payment. 
+                Sunglasses as well as Eyeglasses Are Available For Men And Women In A Diverse Array Of Styles And Trendy Colours. If You Want To Try Out Contact Lenses, Pick The Ones Of Your Choice From The Extensive Variety Of Coloured Contact Lenses From Our Online Store.
+            </p></div></p>
+            <div class="mt-4 justify-between p-3">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <p class="p-3">&copy; 2025 Coolers. All Rights Reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
